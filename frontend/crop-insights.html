@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Insights - Agri Markets</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="./styles/crop-insights.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-seedling"></i>
+                    <span>Agri Markets</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="nav-section">
+                    <h3>Navigation</h3>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="ai-advisor.html" class="nav-item"><i class="fas fa-robot"></i> AI Price Advisor</a></li>
+                        <li><a href="market-data.html" class="nav-item"><i class="fas fa-chart-line"></i> Market Data</a></li>
+                        <li><a href="price-trends.html" class="nav-item"><i class="fas fa-trending-up"></i> Price Trends</a></li>
+                        <li><a href="crop-insights.html" class="nav-item active"><i class="fas fa-leaf"></i> Crop Insights</a></li>
+                        <li><a href="weather.html" class="nav-item"><i class="fas fa-cloud-sun"></i> Weather</a></li>
+                        <li><a href="locations.html" class="nav-item"><i class="fas fa-map-marker-alt"></i> Locations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <ul class="nav-menu">
+                        <!-- <li><a href="settings.html" class="nav-item"><i class="fas fa-cog"></i> Settings</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="weather-widget">
+                    <i class="fas fa-thermometer-half"></i>
+                    <span id="temp-display">28°C</span>
+                    <small>Mostly cloudy</small>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <i class="fas fa-leaf"></i>
+                        <h1>Crop Insights</h1>
+                        <p>Detailed information about crops, cultivation practices, and market trends</p>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="user-menu">
+                        <div class="user-info" id="userInfo">
+                            <span id="userName"></span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <section class="crop-selection-section">
+                    <div class="selection-card">
+                        <div class="selection-header">
+                            <h2>Select Crop Type for Insights</h2>
+                            <p>Choose a crop type to view comprehensive information about cultivation, market trends, and best practices</p>
+                        </div>
+                        
+                       <!-- Crop selection with autocomplete -->
+<div class="crop-selector">
+    <input
+        type="text"
+        id="cropTypeInput"
+        class="crop-autocomplete"
+        list="cropTypes"
+        placeholder="Type to select crop type"
+    />
+    <datalist id="cropTypes">
+        <option value="Wheat"></option>
+        <option value="Rice"></option>
+        <option value="Maize"></option>
+        <option value="Sugarcane"></option>
+        <option value="Millet"></option>
+        <!-- Add more crop types as needed -->
+    </datalist>
+    <button id="getInsightsBtn" class="insights-btn">
+        <i class="fas fa-search"></i>
+        Get Insights
+    </button>
+</div>
+
+                
+                <section class="crop-details-section" id="cropDetailsSection" style="display: none;">
+                    <div class="details-grid">
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <i class="fas fa-info-circle"></i>
+                                <h3>Basic Information</h3>
+                            </div>
+                            <div class="card-content" id="basicInfo"></div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <i class="fas fa-seedling"></i>
+                                <h3>Cultivation Practices</h3>
+                            </div>
+                            <div class="card-content" id="cultivationInfo"></div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <i class="fas fa-chart-line"></i>
+                                <h3>Market Information</h3>
+                            </div>
+                            <div class="card-content" id="marketInfo"></div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <i class="fas fa-cloud-sun"></i>
+                                <h3>Growing Conditions</h3>
+                            </div>
+                            <div class="card-content" id="growingConditions"></div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <i class="fas fa-bug"></i>
+                                <h3>Pest & Disease Management</h3>
+                            </div>
+                            <div class="card-content" id="pestManagement"></div>
+                        </div>
+                        <div class="detail-card">
+                            <div class="card-header">
+                                <i class="fas fa-warehouse"></i>
+                                <h3>Harvesting & Storage</h3>
+                            </div>
+                            <div class="card-content" id="harvestingInfo"></div>
+                        </div>
+                    </div>
+                </section>
+                
+                <div class="loading-state" id="loadingState" style="display: none;">
+                    <div class="loading-spinner">
+                        <i class="fas fa-spinner fa-spin"></i>
+                        <p>Loading crop insights...</p>
+                    </div>
+                </div>
+                
+                <div class="error-state" id="errorState" style="display: none;">
+                    <div class="error-message">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>Unable to Load Crop Details</h3>
+                        <p>Please try selecting a different crop or refresh the page.</p>
+                        <button class="retry-btn" id="retryBtn">
+                            <i class="fas fa-redo"></i>
+                            Try Again
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/crop-insights.js"></script>
+</body>
+</html>

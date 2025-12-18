@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather - Agri Markets</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="./styles/weather.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-seedling"></i>
+                    <span>Agri Markets</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="nav-section">
+                    <h3>Navigation</h3>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="ai-advisor.html" class="nav-item"><i class="fas fa-robot"></i> AI Price Advisor</a></li>
+                        <li><a href="market-data.html" class="nav-item"><i class="fas fa-chart-line"></i> Market Data</a></li>
+                        <li><a href="price-trends.html" class="nav-item"><i class="fas fa-trending-up"></i> Price Trends</a></li>
+                        <li><a href="crop-insights.html" class="nav-item"><i class="fas fa-leaf"></i> Crop Insights</a></li>
+                        <li><a href="weather.html" class="nav-item active"><i class="fas fa-cloud-sun"></i> Weather</a></li>
+                        <!-- <li><a href="ai-recommendations.html" class="nav-item"><i class="fas fa-lightbulb"></i> AI Recommendations</a></li> -->
+                        <li><a href="locations.html" class="nav-item"><i class="fas fa-map-marker-alt"></i> Locations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <ul class="nav-menu">
+                        <!-- <li><a href="settings.html" class="nav-item"><i class="fas fa-cog"></i> Settings</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="weather-widget">
+                    <i class="fas fa-thermometer-half"></i>
+                    <span id="temp-display">28°C</span>
+                    <small>Mostly cloudy</small>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <h1>Weather Forecast</h1>
+                        <p id="currentLocation">Bhavani</p>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <button class="location-btn" id="getCurrentLocation">
+                        <i class="fas fa-location-arrow"></i>
+                        Use My Location
+                    </button>
+                    
+                    <div class="user-menu">
+                        <div class="user-info" id="userInfo">
+                            <span id="userName"></span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Weather Content -->
+            <div class="weather-content">
+                <!-- Location Search -->
+                <section class="search-section">
+                    <div class="search-card">
+                        <h3>Search Location</h3>
+                        <p>Enter city name or use current location</p>
+                        <div class="search-form">
+                            <div class="search-input-group">
+                                <i class="fas fa-search"></i>
+                                <input type="text" id="locationSearch" placeholder="Enter city name or coordinates">
+                                <button class="search-btn" id="searchLocation">
+                                    <i class="fas fa-search"></i>
+                                    Search
+                                </button>
+                                <button class="location-btn" id="useCurrentLocation">
+                                    <i class="fas fa-crosshairs"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Current Weather -->
+                <section class="current-weather-section">
+                    <div class="current-weather-card">
+                        <div class="weather-main">
+                            <div class="weather-icon">
+                                <i class="fas fa-cloud" id="weatherIcon"></i>
+                            </div>
+                            <div class="weather-temp">
+                                <span class="temp-value" id="currentTemp">31°C</span>
+                                <span class="feels-like">Feels like <span id="feelsLike">35°C</span></span>
+                                <span class="weather-desc" id="weatherDesc">overcast clouds</span>
+                            </div>
+                        </div>
+                        
+                        <div class="weather-details">
+                            <div class="weather-detail-grid">
+                                <div class="weather-detail">
+                                    <i class="fas fa-tint"></i>
+                                    <div>
+                                        <span class="detail-label">Humidity</span>
+                                        <span class="detail-value" id="humidity">59%</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="weather-detail">
+                                    <i class="fas fa-wind"></i>
+                                    <div>
+                                        <span class="detail-label">Wind</span>
+                                        <span class="detail-value" id="windSpeed">9 km/h</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="weather-detail">
+                                    <i class="fas fa-thermometer-half"></i>
+                                    <div>
+                                        <span class="detail-label">Pressure</span>
+                                        <span class="detail-value" id="pressure">1008 hPa</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="weather-detail">
+                                    <i class="fas fa-eye"></i>
+                                    <div>
+                                        <span class="detail-label">Visibility</span>
+                                        <span class="detail-value" id="visibility">10 km</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="sun-times">
+                            <div class="sun-time">
+                                <i class="fas fa-sun"></i>
+                                <div>
+                                    <span class="sun-label">Sunrise</span>
+                                    <span class="sun-value" id="sunrise">6:08:57 am</span>
+                                </div>
+                            </div>
+                            <div class="sun-time">
+                                <i class="fas fa-moon"></i>
+                                <div>
+                                    <span class="sun-label">Sunset</span>
+                                    <span class="sun-value" id="sunset">6:40:48 pm</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="weather-footer">
+                            <span class="last-updated">Updated: <span id="lastUpdated">12:26:06 pm</span></span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- 7-Day Forecast -->
+                <section class="forecast-section">
+                    <div class="forecast-card">
+                        <div class="forecast-header">
+                            <h3>7-Day Forecast</h3>
+                            <p>Extended weather outlook for farming planning</p>
+                        </div>
+                        
+                        <div class="forecast-list" id="forecastList">
+                            <!-- Forecast items will be populated here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Agricultural Insights -->
+                <section class="agri-insights-section">
+                    <div class="insights-card">
+                        <div class="insights-header">
+                            <i class="fas fa-seedling"></i>
+                            <h3>Agricultural Weather Insights</h3>
+                        </div>
+                        
+                        <div class="insights-content" id="agriInsights">
+                            <div class="insight-item">
+                                <i class="fas fa-droplet"></i>
+                                <div>
+                                    <h4>Irrigation Recommendation</h4>
+                                    <p>Current humidity levels are adequate. Consider light irrigation for sensitive crops.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="insight-item">
+                                <i class="fas fa-thermometer-three-quarters"></i>
+                                <div>
+                                    <h4>Temperature Alert</h4>
+                                    <p>Moderate temperatures are favorable for most crops. Monitor for heat stress in afternoon.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="insight-item">
+                                <i class="fas fa-cloud-rain"></i>
+                                <div>
+                                    <h4>Rainfall Forecast</h4>
+                                    <p>Light rain expected in 2-3 days. Good time for sowing operations.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading weather data...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/weather.js"></script>
+</body>
+</html>

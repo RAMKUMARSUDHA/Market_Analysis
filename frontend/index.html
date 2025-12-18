@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri Markets - AI-Powered Agricultural Market Intelligence</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-seedling"></i>
+                    <span>Agri Markets</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="nav-section">
+                    <h3>Navigation</h3>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-item active"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="ai-advisor.html" class="nav-item"><i class="fas fa-robot"></i> AI Price Advisor</a></li>
+                        <li><a href="market-data.html" class="nav-item"><i class="fas fa-chart-line"></i> Market Data</a></li>
+                        <li><a href="price-trends.html" class="nav-item"><i class="fas fa-trending-up"></i> Price Trends</a></li>
+                        <li><a href="crop-insights.html" class="nav-item"><i class="fas fa-leaf"></i> Crop Insights</a></li>
+                        <li><a href="weather.html" class="nav-item"><i class="fas fa-cloud-sun"></i> Weather</a></li>
+                        <li><a href="locations.html" class="nav-item"><i class="fas fa-map-marker-alt"></i> Locations</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="weather-widget">
+                    <i class="fas fa-thermometer-half"></i>
+                    <span id="temp-display">28°C</span>
+                    <small>Mostly cloudy</small>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="live-indicator">
+                        <span class="live-dot"></span>
+                        Live Data
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="language-selector">
+                    </div>
+                    
+                    <div class="user-menu" id="userMenu">
+                        <button class="user-profile-btn" id="profileBtn">
+                            <span class="profile-image-container" id="profileImageContainer">
+                                <i class="fas fa-user-circle"></i>
+                            </span>
+                            <span class="user-name" id="userName">Profile</span> 
+                            <i class="fas fa-caret-down"></i>
+                        </button>
+                        <div class="user-profile-dropdown" id="userDropdown">
+                            <a href="#" class="dropdown-item" id="uploadImageBtn">
+                                <i class="fas fa-camera"></i> Upload Image
+                            </a>
+                            <a href="./profile.html" class="dropdown-item">
+                                <i class="fas fa-user"></i> Profile
+                            </a>
+                            <a href="#" class="dropdown-item" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                    <div class="login-prompt" id="loginPrompt" style="display: none;">
+                        <a href="login.html" class="login-link">Login</a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <section class="welcome-section">
+                    <div class="welcome-card">
+                        <div class="welcome-content">
+                            <div class="welcome-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="welcome-text">
+                                <h1>AI-Powered Agricultural Market Intelligence</h1>
+                                <p>Helping farmers get better prices through AI-driven market analysis</p>
+                            </div>
+                        </div>
+                        
+                        <div class="cta-section">
+                            <h2>Get AI-Powered Price Recommendations</h2>
+                            <p>Our advanced AI analyzes market trends, transport costs, and demand patterns to help you maximize profits</p>
+                            <a href="./ai-advisor.html" class="cta-button">
+                                <i class="fas fa-robot"></i>
+                                Try AI Price Advisor Now
+                            </a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Total Markets</h3>
+                                <div class="stat-value" id="totalMarkets">1,247</div>
+                                <div class="stat-label">Active markets nationwide</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-rupee-sign"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Average Price</h3>
+                                <div class="stat-value" id="averagePrice">₹2850</div>
+                                <div class="stat-change positive" id="priceChange">+12.5% from last week</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-thermometer-half"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Temperature</h3>
+                                <div class="stat-value" id="temperature">28°C</div>
+                                <div class="stat-label" id="location">Tamil Nadu</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-tint"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Humidity</h3>
+                                <div class="stat-value" id="humidity">65%</div>
+                                <div class="stat-label" id="windInfo">12 km/h wind</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="features-section">
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>AI Price Advisor</h3>
+                                <p>Get personalized recommendations for maximum profits</p>
+                                <div class="feature-details">
+                                    <div class="feature-tag">Smart Market Selection</div>
+                                    <div class="feature-tag">Profit Optimization</div>
+                                </div>
+                                <p class="feature-description">AI analyzes market trends and transport costs to recommend the best selling strategy</p>
+                                <a href="ai-advisor.html" class="feature-button">
+                                    <i class="fas fa-robot"></i>
+                                    Get AI Recommendations
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-chart-area"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Market Analysis</h3>
+                                <p>View real-time market data and price trends</p>
+                                <div class="feature-highlight">
+                                    <strong>Top Crop: Onion</strong>
+                                </div>
+                                <p class="feature-description">Get detailed insights into current market conditions across India</p>
+                                <a href="market-data.html" class="feature-button">
+                                    <i class="fas fa-chart-line"></i>
+                                    View Markets
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i class="fas fa-cloud-sun"></i>
+                            </div>
+                            <div class="feature-content">
+                                <h3>Weather Insights</h3>
+                                <p>Weather-based farming recommendations</p>
+                                <p class="feature-description">Plan your farming activities with accurate weather data and AI insights</p>
+                                <a href="weather.html" class="feature-button">
+                                    <i class="fas fa-eye"></i>
+                                    View Forecast
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="solutions-section">
+                    <div class="solutions-card">
+                        <div class="solutions-header">
+                            <i class="fas fa-target"></i>
+                            <h2>Empowering Farmers with Smart Technology</h2>
+                        </div>
+                        
+                        <div class="solutions-content">
+                            <div class="challenges">
+                                <h3><i class="fas fa-times-circle"></i> Current Challenges:</h3>
+                                <ul>
+                                    <li>Farmers sell at local markets with poor prices</li>
+                                    <li>No visibility into better market opportunities</li>
+                                    <li>Transport costs not considered in decisions</li>
+                                    <li>Timing of sales not optimized</li>
+                                    <li>Limited access to market intelligence</li>
+                                </ul>
+                            </div>
+                            
+                            <div class="solutions">
+                                <h3><i class="fas fa-check-circle"></i> Our AI Solution:</h3>
+                                <ul>
+                                    <li>AI analyzes all nearby markets for best prices</li>
+                                    <li>Smart recommendations considering transport costs</li>
+                                    <li>Optimal timing suggestions based on trends</li>
+                                    <li>Profit maximization through data-driven insights</li>
+                                    <li>Real-time market intelligence at fingertips</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/dashboard.js"></script>
+</body>
+</html>

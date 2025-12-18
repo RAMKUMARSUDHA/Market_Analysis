@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agri Markets - User Profile</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-seedling"></i>
+                    <span>Agri Markets</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="nav-section">
+                    <h3>Navigation</h3>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="ai-advisor.html" class="nav-item"><i class="fas fa-robot"></i> AI Price Advisor</a></li>
+                        <li><a href="market-data.html" class="nav-item"><i class="fas fa-chart-line"></i> Market Data</a></li>
+                        <li><a href="price-trends.html" class="nav-item"><i class="fas fa-trending-up"></i> Price Trends</a></li>
+                        <li><a href="crop-insights.html" class="nav-item"><i class="fas fa-leaf"></i> Crop Insights</a></li>
+                        <li><a href="weather.html" class="nav-item"><i class="fas fa-cloud-sun"></i> Weather</a></li>
+                        <li><a href="locations.html" class="nav-item"><i class="fas fa-map-marker-alt"></i> Locations</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="weather-widget">
+                    <i class="fas fa-thermometer-half"></i>
+                    <span id="temp-display">28°C</span>
+                    <small>Mostly cloudy</small>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="live-indicator">
+                        <span class="live-dot"></span>
+                        Live Data
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="language-selector"></div>
+                    <div class="user-menu" id="userMenu">
+                        <button class="user-profile-btn" id="profileBtn">
+                            <span class="profile-image-container" id="profileImageContainer">
+                                <i class="fas fa-user-circle"></i>
+                            </span>
+                            <span class="user-name" id="userName">Profile</span> 
+                            <i class="fas fa-caret-down"></i>
+                        </button>
+                        <div class="user-profile-dropdown" id="userDropdown">
+                            <a href="#" class="dropdown-item" id="uploadImageBtn">
+                                <i class="fas fa-camera"></i> Upload Image
+                            </a>
+                            <a href="#" class="dropdown-item">
+                                <i class="fas fa-user"></i> Profile
+                            </a>
+                            <a href="#" class="dropdown-item" id="logoutBtn">
+                                <i class="fas fa-sign-out-alt"></i> Logout
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="profile-page-content">
+                <h1>User Profile</h1>
+                
+                <section class="profile-details-section">
+                    <div class="profile-card">
+                        <div class="profile-header">
+                            <div class="profile-avatar-container" id="profilePageImage">
+                                <i class="fas fa-user-circle"></i>
+                            </div>
+                            <div class="profile-info">
+                                <h2 id="profileName">John Doe</h2>
+                                <p id="profileEmail">johndoe@example.com</p>
+                            </div>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="btn btn-primary" id="editProfileBtn"><i class="fas fa-edit"></i> Edit Profile</button>
+                            <button class="btn btn-secondary" id="changePasswordBtn"><i class="fas fa-key"></i> Change Password</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="profile-settings-section">
+                    <div class="settings-card">
+                        <h2>Account Settings</h2>
+                        <div class="setting-item">
+                            <div class="setting-label">Location:</div>
+                            <div class="setting-value" id="userLocation">Erode, Tamil Nadu</div>
+                        </div>
+                        <div class="setting-item">
+                            <div class="setting-label">Notifications:</div>
+                            <div class="setting-value">
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider round"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <input type="file" id="imageUpload" accept="image/*" style="display: none;">
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/profile.js"></script>
+</body>
+</html>

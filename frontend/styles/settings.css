@@ -1,0 +1,86 @@
+/* ... [Previous CSS from the first response goes here] ... */
+
+/* -------------------------------------- */
+/* --- UPDATED STYLES FOR SETTINGS PAGE --- */
+/* -------------------------------------- */
+
+.settings-page {
+    max-width: 600px; /* பக்கத்தின் அகலத்தை குறைத்து மையப்படுத்தப்பட்டுள்ளது */
+    margin: 0 auto;
+}
+
+.settings-card {
+    background-color: var(--white);
+    border-radius: 12px;
+    padding: 30px; /* கூடுதல் இடம் சேர்க்கப்பட்டுள்ளது */
+    margin-bottom: 25px;
+    margin-top: 100px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.1); /* நிழல் மேம்படுத்தப்பட்டுள்ளது */
+}
+
+.settings-card h2 {
+    font-size: 22px; /* எழுத்துரு அளவு பெரிதாக்கப்பட்டுள்ளது */
+    font-weight: 600;
+    color: var(--dark-green);
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.form-group {
+    margin-bottom: 20px; /* கூடுதல் இடைவெளி சேர்க்கப்பட்டுள்ளது */
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600; /* எழுத்துரு எடை அதிகரிக்கப்பட்டுள்ளது */
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px 14px; /* கூடுதல் padding சேர்க்கப்பட்டுள்ளது */
+    border: 1px solid #e0e0e0; /* பார்டர் நிறம் மாற்றப்பட்டுள்ளது */
+    border-radius: 8px; /* விளிம்புகள் வளைக்கப்பட்டுள்ளது */
+    font-size: 16px;
+    color: var(--text-color);
+    transition: all 0.3s ease-in-out; /* அனிமேஷன் சேர்க்கப்பட்டுள்ளது */
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-green);
+    box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2); /* குவியும் போது நிழல் சேர்க்கப்பட்டுள்ளது */
+}
+
+/* File input specific style */
+.form-group input[type="file"] {
+    padding: 12px 0;
+}
+
+.form-actions {
+    text-align: right;
+    margin-top: 30px;
+}
+
+.btn-save-changes {
+    background-color: var(--primary-green);
+    color: var(--white);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.btn-save-changes:hover {
+    background-color: var(--dark-green);
+    transform: translateY(-2px); /* hover-இல் மேலே நகரும் */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}

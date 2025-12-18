@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Market Advisor - Agri Markets</title>
+  <link rel="stylesheet" href="styles/main.css" />
+  <link rel="stylesheet" href="styles/ai_advisor.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+<body>
+  <div class="app-container">
+    <nav class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <i class="fas fa-seedling"></i>
+          <span>Agri Markets</span>
+        </div>
+      </div>
+      <div class="sidebar-content">
+        <div class="nav-section">
+          <h3>Navigation</h3>
+          <ul class="nav-menu">
+            <li><a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a></li>
+            <li><a href="ai-advisor.html" class="nav-item active"><i class="fas fa-robot"></i> AI Market Advisor</a></li>
+            <li><a href="market-data.html" class="nav-item"><i class="fas fa-chart-line"></i> Market Data</a></li>
+            <li><a href="weather.html" class="nav-item"><i class="fas fa-cloud-sun"></i> Weather</a></li>
+            <li><a href="locations.html" class="nav-item"><i class="fas fa-map-marker-alt"></i> Locations</a></li>
+            <li><a href="crop-insights.html" class="nav-item"><i class="fas fa-leaf"></i> Crop Insights</a></li>
+          </ul>
+          
+        </div>
+        
+       <div class="nav-section">
+                    <ul class="nav-menu">
+                        
+                    </ul>
+                </div>
+            </div>
+    </nav>
+    
+
+    <main class="main-content">
+      <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <i class="fas fa-leaf"></i>
+                        <h1>AI Market Advisor</h1>
+                        <p>Find the most profitable markets to sell your crops and maximize your earnings</p>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="user-menu">
+                        <div class="user-info" id="userInfo">
+                            <span id="userName"></span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+      
+
+      <div class="recommendations-container">
+        <div class="profit-info">
+          <div class="info-card">
+            <div class="info-icon"><i class="fas fa-bullseye"></i></div>
+            <div class="info-text">
+              <h2>Maximize Your Farming Profits</h2>
+              <p>Our AI analyzes thousands of markets across India to find where you can sell your crops for the highest profit. Get personalized recommendations based on your location, crop type, and current market conditions.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-section">
+          <h2>Find Your Most Profitable Market</h2>
+          <form id="advisorForm" class="recommendations-form">
+            <div class="form-group">
+              <label for="crop"><i class="fas fa-seedling"></i> Your Crop</label>
+              <input list="crops" id="crop" name="crop" required placeholder="Type or select your crop" />
+              <datalist id="crops">
+                <option value="Wheat "></option>
+                <option value="Rice "></option>
+                <option value="Cotton "></option>
+                <option value="Sugarcane "></option>
+                <option value="Maize "></option>
+                <option value="Onion "></option>
+                <option value="Potato "></option>
+                <option value="Tomato "></option>
+              </datalist>
+            </div>
+
+            <div class="form-group">
+              <label for="state"><i class="fas fa-map"></i> Your State</label>
+              <select id="state" name="state" required>
+                <option value="">Select your state</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="district"><i class="fas fa-location-dot"></i> Your District</label>
+              <select id="district" name="district" required>
+                <option value="">Select your district</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="quantity"><i class="fas fa-weight"></i> Quantity (Quintals)</label>
+                <input type="number" id="quantity" name="quantity" placeholder="Enter quantity" required />
+              </div>
+              <div class="form-group">
+                <label for="quality"><i class="fas fa-star"></i> Crop Quality</label>
+                <select id="quality" name="quality" required>
+                  <option value="">Select quality</option>
+                  <option value="premium">Premium Grade</option>
+                  <option value="good">Good Grade</option>
+                  <option value="average">Average Grade</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="transport"><i class="fas fa-truck"></i> Maximum Travel Distance (km)</label>
+              <select id="transport" name="transport" required>
+                <option value="">Select travel distance</option>
+                <option value="50">Within 50 km</option>
+                <option value="100">Within 100 km</option>
+                <option value="200">Within 200 km</option>
+                <option value="500">Within 500 km</option>
+              </select>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-search"></i> Find Best Markets for Maximum Profit
+            </button>
+          </form>
+        </div>
+
+        <div class="results-section">
+          <h2>AI Recommendations</h2>
+          <div id="loadingSpinner" style="display:none;">
+            <p>Loading recommendations...</p>
+          </div>
+          <div id="resultContent">
+            <p>Enter your details and click "Find Best Markets" to get AI-powered recommendations.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="selling-tips">
+        <h2>Smart Selling Tips</h2>
+        <ul>
+          <li>Sell during peak demand to get best prices.</li>
+          <li>Better quality crops earn premium price.</li>
+          <li>Try direct sales to minimize middlemen.</li>
+          <li>Collaborate with other farmers for transport savings.</li>
+        </ul>
+      </div>
+    </main>
+
+    <script>
+      let statesData = {};
+
+      // Load states and districts JSON
+      fetch('data/indian-states-districts.json')
+        .then(response => response.json())
+        .then(data => {
+          statesData = data;
+          const stateSelect = document.getElementById('state');
+          stateSelect.innerHTML = '<option value="">Select your state</option>';
+          Object.keys(statesData).forEach(state => {
+            const option = document.createElement('option');
+            option.value = state;
+            option.textContent = state;
+            stateSelect.appendChild(option);
+          });
+        })
+        .catch(error => {
+          console.error('Error loading states data:', error);
+        });
+
+      // Update districts based on selected state
+      document.getElementById('state').addEventListener('change', function () {
+        const districts = statesData[this.value] || [];
+        const districtSelect = document.getElementById('district');
+        districtSelect.innerHTML = '<option value="">Select your district</option>';
+        districts.forEach(district => {
+          const option = document.createElement('option');
+          option.value = district;
+          option.textContent = district;
+          districtSelect.appendChild(option);
+        });
+      });
+
+      // Form submission handler (AJAX)
+      document.getElementById('advisorForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const crop = document.getElementById('crop').value.trim();
+        const state = document.getElementById('state').value;
+        const district = document.getElementById('district').value;
+        const quantity = document.getElementById('quantity').value;
+        const quality = document.getElementById('quality').value;
+        const transport = document.getElementById('transport').value;
+
+        const payload = {
+          crop,
+          state,
+          district,
+          quantity,
+          quality,
+          transport
+        };
+
+        const resultContent = document.getElementById('resultContent');
+        const loadingSpinner = document.getElementById('loadingSpinner');
+
+        loadingSpinner.style.display = 'block';
+        resultContent.style.display = 'none';
+
+        try {
+          const response = await fetch('/api/ai-recommendations', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          const data = await response.json();
+
+          loadingSpinner.style.display = 'none';
+          resultContent.style.display = 'block';
+
+          if (data.success) {
+            resultContent.innerHTML = '<pre>' + data.insight + '</pre>';
+          } else {
+            resultContent.innerHTML = '<p>Error: ' + (data.error || 'Unknown error') + '</p>';
+          }
+        } catch (error) {
+          loadingSpinner.style.display = 'none';
+          resultContent.style.display = 'block';
+          resultContent.innerHTML = '<p>Request failed: ' + error.message + '</p>';
+        }
+      });
+    </script>
+  </div>
+</body>
+</html>

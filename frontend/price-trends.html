@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Price Trends - Agri Markets</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/price-trends.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-seedling"></i>
+                    <span>Agri Markets</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="nav-section">
+                    <h3>Navigation</h3>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="ai-advisor.html" class="nav-item"><i class="fas fa-robot"></i> AI Price Advisor</a></li>
+                        <li><a href="market-data.html" class="nav-item"><i class="fas fa-chart-line"></i> Market Data</a></li>
+                        <li><a href="price-trends.html" class="nav-item active"><i class="fas fa-trending-up"></i> Price Trends</a></li>
+                        <li><a href="crop-insights.html" class="nav-item"><i class="fas fa-leaf"></i> Crop Insights</a></li>
+                        <li><a href="weather.html" class="nav-item"><i class="fas fa-cloud-sun"></i> Weather</a></li>
+                        <li><a href="locations.html" class="nav-item"><i class="fas fa-map-marker-alt"></i> Locations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <ul class="nav-menu">
+                        <!-- <li><a href="settings.html" class="nav-item"><i class="fas fa-cog"></i> Settings</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="weather-widget">
+                    <i class="fas fa-thermometer-half"></i>
+                    <span id="temp-display">28°C</span>
+                    <small>Mostly cloudy</small>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1><i class="fas fa-trending-up"></i> Price Trends</h1>
+                    <p>Historical price analysis and market forecasting</p>
+                </div>
+                
+                <div class="header-right">
+                    <button class="refresh-btn" id="refreshBtn">
+                        <i class="fas fa-sync-alt"></i>
+                        Refresh
+                    </button>
+                    
+                    <div class="user-menu">
+                        <div class="user-info" id="userInfo">
+                            <span id="userName"></span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <section class="filters-section">
+                    <div class="filters-card">
+                        <h3>Filter Price Trends</h3>
+                        <div class="filters-grid">
+                            <div class="filter-group">
+                                <label>Enter Crop Name</label>
+                                <input type="text" id="cropInput" placeholder="e.g., Onion, Wheat, Rice..." list="cropSuggestions">
+                                <datalist id="cropSuggestions">
+                                    <option value="Wheat">
+                                    <option value="Rice">
+                                    <option value="Maize">
+                                    <option value="Barley">
+                                    <option value="Onion">
+                                    <option value="Potato">
+                                    <option value="Tomato">
+                                    <option value="Cabbage">
+                                    <option value="Carrot">
+                                    <option value="Beans">
+                                    <option value="Peas">
+                                    <option value="Cauliflower">
+                                    <option value="Apple">
+                                    <option value="Banana">
+                                    <option value="Mango">
+                                    <option value="Orange">
+                                    <option value="Grapes">
+                                    <option value="Cotton">
+                                    <option value="Sugarcane">
+                                    <option value="Tobacco">
+                                    <option value="Chickpea">
+                                    <option value="Lentil">
+                                    <option value="Black Gram">
+                                    <option value="Green Gram">
+                                </datalist>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label>State</label>
+                                <select id="stateSelect">
+                                    <option value="">All States</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label>District</label>
+                                <select id="districtSelect">
+                                    <option value="">All Districts</option>
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label>Time Period: <b>Last 7 Days</b></label>
+                                <input type="hidden" id="periodSelect" value="7">
+                            </div>
+                            
+                            <div class="filter-group">
+                                <button class="apply-filters-btn" id="applyFilters">
+                                    <i class="fas fa-filter"></i>
+                                    Apply Filters
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="charts-section">
+                    <div class="charts-grid">
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3><i class="fas fa-chart-line"></i> Price Trend Analysis</h3>
+                                <div class="chart-controls">
+                                    <button class="chart-btn active" data-chart="line">Line</button>
+                                    <button class="chart-btn" data-chart="bar">Bar</button>
+                                </div>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="priceChart"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="chart-card">
+                            <div class="chart-header">
+                                <h3><i class="fas fa-chart-bar"></i> Trading Volume</h3>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="volumeChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="stats-section">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Highest Price</h3>
+                                <div class="stat-value" id="highestPrice">--</div>
+                                <div class="stat-label" id="highestPriceDate">--</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon trend-down">
+                                <i class="fas fa-arrow-down"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Lowest Price</h3>
+                                <div class="stat-value" id="lowestPrice">--</div>
+                                <div class="stat-label" id="lowestPriceDate">--</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon trend-neutral">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Average Price</h3>
+                                <div class="stat-value" id="averagePrice">--</div>
+                                <div class="stat-change positive" id="priceChange">--</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon trend-volume">
+                                <i class="fas fa-cubes"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3>Total Volume</h3>
+                                <div class="stat-value" id="totalVolume">--</div>
+                                <div class="stat-label" id="totalVolumeLabel">This period</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="predictions-section">
+                    <div class="predictions-card">
+                        <div class="predictions-header">
+                            <h3><i class="fas fa-crystal-ball"></i> AI Price Predictions</h3>
+                            <div class="prediction-accuracy">
+                                <span class="accuracy-badge">-- Accuracy</span>
+                            </div>
+                        </div>
+                        
+                        <div class="predictions-content" id="predictionsContent">
+                            <div class="prediction-item">
+                                <p>No predictions available. Please select a crop and location.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="prediction-factors">
+                            <h4>Key Factors Affecting Prices:</h4>
+                            <div class="factors-list" id="factorsList">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="insights-section">
+                    <div class="insights-card">
+                        <h3><i class="fas fa-lightbulb"></i> Market Insights</h3>
+                        <div class="insights-content" id="marketInsights">
+                            <p>No insights available. Please select a crop and location.</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading price trends...</p>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/price-trends.js"></script>
+</body>
+</html>

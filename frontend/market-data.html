@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Market Data - Agri Markets</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/market-data.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-seedling"></i>
+                    <span>Agri Markets</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="nav-section">
+                    <h3>Navigation</h3>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="ai-advisor.html" class="nav-item"><i class="fas fa-robot"></i> AI Price Advisor</a></li>
+                        <li><a href="market-data.html" class="nav-item active"><i class="fas fa-chart-line"></i> Market Data</a></li>
+                        <li><a href="price-trends.html" class="nav-item"><i class="fas fa-trending-up"></i> Price Trends</a></li>
+                        <li><a href="crop-insights.html" class="nav-item"><i class="fas fa-leaf"></i> Crop Insights</a></li>
+                        <li><a href="weather.html" class="nav-item"><i class="fas fa-cloud-sun"></i> Weather</a></li>
+                        <!-- <li><a href="ai-recommendations.html" class="nav-item"><i class="fas fa-lightbulb"></i> AI Recommendations</a></li> -->
+                        <li><a href="locations.html" class="nav-item"><i class="fas fa-map-marker-alt"></i> Locations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <ul class="nav-menu">
+                        <!-- <li><a href="settings.html" class="nav-item"><i class="fas fa-cog"></i> Settings</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="weather-widget">
+                    <i class="fas fa-thermometer-half"></i>
+                    <span id="temp-display">28°C</span>
+                    <small>Mostly cloudy</small>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <h1>Market Data</h1>
+                        <p>Real-time agricultural market prices and trends</p>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    
+                    <div class="user-menu">
+                        <div class="user-info" id="userInfo">
+                            <span id="userName"></span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Market Data Content -->
+            <div class="market-content">
+                <!-- Filters Section -->
+                <section class="filters-section">
+                    <div class="filters-card">
+                        <h3>Filter Markets</h3>
+                        <div class="filters-grid">
+                            <div class="filter-group">
+                                <label for="stateFilter">State</label>
+                                <select id="stateFilter">
+                                    <option value="">All States</option>
+                                    <!-- Will be populated dynamically from JSON data -->
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="districtFilter">District</label>
+                                <select id="districtFilter">
+                                    <option value="">All Districts</option>
+                                    <!-- Will be populated dynamically based on state selection -->
+                                </select>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="commodityInput">Enter Crop Name</label>
+                                <input type="text" id="commodityInput" placeholder="e.g., Onion, Wheat, Rice..." list="cropOptions">
+                                <datalist id="cropOptions">
+                                    <option value="Wheat">
+                                    <option value="Rice">
+                                    <option value="Maize">
+                                    <option value="Barley">
+                                    <option value="Onion">
+                                    <option value="Potato">
+                                    <option value="Tomato">
+                                    <option value="Cabbage">
+                                    <option value="Carrot">
+                                    <option value="Beans">
+                                    <option value="Peas">
+                                    <option value="Cauliflower">
+                                    <option value="Apple">
+                                    <option value="Banana">
+                                    <option value="Mango">
+                                    <option value="Orange">
+                                    <option value="Grapes">
+                                    <option value="Cotton">
+                                    <option value="Sugarcane">
+                                    <option value="Tobacco">
+                                    <option value="Chickpea">
+                                    <option value="Lentil">
+                                    <option value="Black Gram">
+                                    <option value="Green Gram">
+                                </datalist>
+                            </div>
+                            
+                            <div class="filter-group">
+                                <label for="searchMarket">Search Market</label>
+                                <input type="text" id="searchMarket" placeholder="Search by market name...">
+                            </div>
+                        </div>
+                        
+                        <div class="filter-actions">
+                            <button class="submit-btn" id="submitFilters">
+                                <i class="fas fa-check"></i>
+                                Submit Filters
+                            </button>
+                            <button class="search-btn" id="searchMarkets">
+                                <i class="fas fa-search"></i>
+                                Search Markets
+                            </button>
+                            <button class="clear-filters-btn" id="clearFilters">
+                                <i class="fas fa-times"></i>
+                                Clear All
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Summary Stats -->
+                <section class="summary-section">
+                    <div class="summary-grid">
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h3>Active Markets</h3>
+                                <div class="summary-value" id="activeMarkets">0</div>
+                                <div class="summary-label">Currently trading</div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h3>Average Price</h3>
+                                <div class="summary-value" id="avgPrice">₹0</div>
+                                <div class="summary-change" id="priceChange">No change</div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-weight-hanging"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h3>Total Volume</h3>
+                                <div class="summary-value" id="totalVolume">0 T</div>
+                                <div class="summary-label">Today's arrivals</div>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-card">
+                            <div class="summary-icon">
+                                <i class="fas fa-seedling"></i>
+                            </div>
+                            <div class="summary-content">
+                                <h3>Top Commodity</h3>
+                                <div class="summary-value" id="topCommodity">Loading...</div>
+                                <div class="summary-label">Highest volume</div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Market Table -->
+                <section class="table-section">
+                    <div class="table-card">
+                        <div class="table-header">
+                            <h3>Market Prices</h3>
+                            <div class="table-actions">
+                                <button class="export-btn" id="exportData">
+                                    <i class="fas fa-download"></i>
+                                    Export CSV
+                                </button>
+                                <div class="view-toggle">
+                                    <button class="view-btn active" data-view="table">
+                                        <i class="fas fa-table"></i>
+                                    </button>
+                                    <button class="view-btn" data-view="cards">
+                                        <i class="fas fa-th-large"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Table View -->
+                        <div class="table-container" id="tableView">
+                            <table class="market-table">
+                                <thead>
+                                    <tr>
+                                        <th>Market</th>
+                                        <th>State</th>
+                                        <th>District</th>
+                                        <th>Crop</th>
+                                        <th>Variety</th>
+                                        <th>Price (₹/KG)</th>
+                                        
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="marketTableBody">
+                                    <tr>
+                                        <td colspan="10" class="loading-row">
+                                            <i class="fas fa-spinner fa-spin"></i>
+                                            Loading market data...
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        
+
+                    
+                        
+                        <!-- Cards View -->
+                        <div class="cards-container hidden" id="cardsView">
+                            <div class="market-cards-grid" id="marketCardsGrid">
+                                <!-- Market cards will be populated here -->
+                            </div>
+                        </div>
+                        
+                        <!-- Pagination -->
+                        <div class="pagination" id="pagination">
+                            <button class="page-btn" id="prevPage" disabled>
+                                <i class="fas fa-chevron-left"></i>
+                                Previous
+                            </button>
+                            <div class="page-info">
+                                <span id="pageInfo">Page 1 of 1</span>
+                            </div>
+                            <button class="page-btn" id="nextPage" disabled>
+                                Next
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Loading market data...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="scripts/main.js"></script>
+    <script src="scripts/market-data.js"></script>
+</body>
+</html>

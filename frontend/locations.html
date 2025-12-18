@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Locations - Agri Markets</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="./styles/locations.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-seedling"></i>
+                    <span>Agri Markets</span>
+                </div>
+            </div>
+            
+            <div class="sidebar-content">
+                <div class="nav-section">
+                    <h3>Navigation</h3>
+                    <ul class="nav-menu">
+                        <li><a href="index.html" class="nav-item"><i class="fas fa-home"></i> Dashboard</a></li>
+                        <li><a href="ai-advisor.html" class="nav-item"><i class="fas fa-robot"></i> AI Price Advisor</a></li>
+                        <li><a href="market-data.html" class="nav-item"><i class="fas fa-chart-line"></i> Market Data</a></li>
+                        <li><a href="price-trends.html" class="nav-item"><i class="fas fa-trending-up"></i> Price Trends</a></li>
+                        <li><a href="crop-insights.html" class="nav-item"><i class="fas fa-leaf"></i> Crop Insights</a></li>
+                        <li><a href="weather.html" class="nav-item"><i class="fas fa-cloud-sun"></i> Weather</a></li>
+                        <li><a href="locations.html" class="nav-item active"><i class="fas fa-map-marker-alt"></i> Locations</a></li>
+                    </ul>
+                </div>
+                
+                <div class="nav-section">
+                    <ul class="nav-menu">
+                        <!-- <li><a href="settings.html" class="nav-item"><i class="fas fa-cog"></i> Settings</a></li> -->
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="weather-widget">
+                    <i class="fas fa-thermometer-half"></i>
+                    <span id="temp-display">28°C</span>
+                    <small>Mostly cloudy</small>
+                </div>
+            </div>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="page-title">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h1>Market Locations</h1>
+                        <p>Explore agricultural markets across all 28 states of India</p>
+                    </div>
+                </div>
+                
+                <div class="header-right">
+                    <div class="user-menu">
+                        <div class="user-info" id="userInfo">
+                           
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="content-wrapper">
+                <section class="location-selection-section">
+                    <div class="selection-card">
+                        <div class="selection-header">
+                            <h2>Select Location</h2>
+                            <p>Choose a state and district to view agricultural markets and live analysis</p>
+                        </div>
+                        <div class="location-filters">
+                            <div class="filter-row">
+                                <div class="filter-group">
+                                    <label for="stateSelect">Select State</label>
+                                    <select id="stateSelect" class="location-select"></select>
+                                </div>
+                                <div class="filter-group">
+                                    <label for="districtSelect">Select District</label>
+                                    <select id="districtSelect" class="location-select"></select>
+                                </div>
+                                
+                                
+                            </div>
+                            
+                            <button id="searchMarketsBtn" class="search-btn">
+                                <i class="fas fa-search"></i> Search Markets
+                            </button>
+                            
+                        </div>
+                        
+                    </div>
+                
+
+                 <div class="sort-filter-bar">
+                    <label for="sortSelect">Sort By:</label>
+                    <select id="sortSelect">
+                        <option value="market">Market Name</option>
+                        <option value="type">Market Type</option>
+                        <option value="state">State</option>
+                        <option value="district">District</option>
+                    </select>
+                    <label for="cropFilter">Filter by Crop:</label>
+                    <select id="cropFilter">
+                        <option value="">All Crops</option>
+                    </select>
+                    <label for="marketTypeFilter">Market Type:</label>
+                    <select id="marketTypeFilter">
+                        <option value="">Any</option>
+                        <option value="mandi">Mandi</option>
+                        <option value="private">Private</option>
+                        <option value="government">Government</option>
+                    </select>
+                </div> 
+                </section>
+
+                <div class="loading-state" id="loadingState" style="display: none;">
+                    <div class="loading-spinner"><i class="fas fa-spinner fa-spin"></i> Loading market locations...</div>
+                </div>
+
+                <section class="markets-section" id="marketsSection" style="display: none;">
+                    <div class="markets-header">
+                        <h2 id="marketsTitle">Markets</h2>
+                        <span id="marketsCount"></span>
+                    </div>
+                    <div class="markets-grid" id="marketsGrid"></div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="scripts/locations.js"></script>
+</body>
+</html>
